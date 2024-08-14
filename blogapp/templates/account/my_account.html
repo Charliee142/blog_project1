@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>My Profile</title>{% endblock %}
+{% block content %}
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+     <div class="card p-4 shadow">
+         <div class=" image d-flex flex-column justify-content-center align-items-center">
+            {% if  user.profile.image %}
+              <img src="{{ user.profile.image.url }}" class="rounded-circle" height="100" width="100" />
+            {% else %}
+            <img src="{% static 'assets/img/avatars/default.jpg' %}" class="rounded-circle" height="100" width="100" />
+            {% endif %}      
+            {% if user.profile.first_name and user.profile.last_name %}
+            <span class="name mt-3"><b>Name: </b>{{user.profile.first_name }} {{user.profile.last_name}}</span> 
+            {% else %}
+            <span class="name mt-3"><b>Name: </b>Names are not provided yet</span> 
+            {% endif %}
+            {% if user.email %}
+            <span class="email"><b>Email: </b>{{user.email}}</span> 
+            {% else %}
+            <span class="email"><b>Email: </b>Email is not yet provided</span> 
+            {% endif %}
+            <span class="idd"><b>Username: </b>@{{ user.username }}</span> <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+               
+            </div> 
+               <div class="text mt-3"> 
+               {% if user.profile.bio %}
+               <span><b>About me: </b>{{user.profile.bio}}<br><br> </span>
+               {% else %}
+               <span><b>About me: </b>Profile info is not yet provided<br><br> </span>
+               {% endif %}
+               </div>
+                    <div class=" px-2 rounded mt-4 date ">
+                         <span class="join"><b>Joined: </b>{{user.profile.join_date}}</span> 
+                         
+                        </div> 
+                        <div class=" px-2 rounded mt-4 date ">  
+                            <a class='btn btn-primary btn-pill btn-sm' href="{% url 'update_profile' %}" class="text-white">Edit Profile</a>
+                            <a class='btn btn-danger btn-pill btn-sm' href="{% url 'delete_account' %}" class="text-white">Delete Profile</a>
+                            <a class='btn btn-success btn-pill btn-sm' href="{% url 'account_logout' %}" class="text-white">Logout</a>
+                          </div> 
+                    </div>
+                 </div>
+</div>
+{% endblock content %}

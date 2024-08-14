@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}<title>Profile</title>{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5" id="container">
+    <h3 class="text-center"><strong>Account Deletion</strong></h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mt-2">Delete Account</button>
+    </form>
+</div>
+<br>
+{% endblock content %}
